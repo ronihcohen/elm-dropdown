@@ -49,7 +49,7 @@ renderDropdownHtml model valuesList =
     ]
     [
         renderDropdownValueHtml model,
-        renderDropdownListHtml valuesList
+        renderDropdownListHtml model valuesList
     ]
 
 renderDropdownValueHtml : Model -> Html Msg
@@ -63,11 +63,12 @@ renderDropdownValueHtml model =
         text ("Value: " ++ model.value)
     ]
 
-renderDropdownListHtml : List valuesList -> Html Msg
-renderDropdownListHtml valuesList =
+renderDropdownListHtml : Model -> List valuesList -> Html Msg
+renderDropdownListHtml model valuesList =
     ul
     [
-        class "elm-dropdown__list"
+        class "elm-dropdown__list",
+        dropdownListStyles model.isOpen
     ]
     (
         List.map (\val -> 
@@ -81,3 +82,14 @@ renderDropdownListHtml valuesList =
             ]
         ) valuesList
     )
+
+
+-- STYLES
+dropdownListStyles : Bool -> Attribute msg
+dropdownListStyles isOpen =
+  style
+    [
+        (
+            "display", if isOpen then "block" else "none"
+        )
+    ]
