@@ -62,7 +62,7 @@ renderDropdownValueHtml model =
         onClick ToggleDropdown
     ]
     [
-        text ("Value: " ++ model.value)
+        text model.value
     ]
 
 renderDropdownListHtml : Model -> List valuesList -> Html Msg
@@ -124,7 +124,8 @@ dropdownListStyles isOpen =
         ("margin", "0"),
         ("padding", "0"),
         ("list-style-type", "none"),        
-        ("border", "1px solid #ddd")   
+        ("border", "1px solid #ddd"),
+        ("border-width", "1px 1px 0 1px")         
     ]
 
 dropdownListItemStyles : Attribute msg
@@ -132,5 +133,8 @@ dropdownListItemStyles =
     style
     [
         ("box-sizing", "border-box"),
-        ("padding", "0 10px")                          
+        ("padding", "0 10px"),                        
+        ("height", "30px"),                     
+        ("line-height", "30px"),                    
+        ("border-bottom", "1px solid #ddd")                    
     ]
