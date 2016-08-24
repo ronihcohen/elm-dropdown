@@ -27,29 +27,30 @@ type Msg = DropdownValue String
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        DropdownValue value -> { model | value = value }
+        DropdownValue value ->
+            { model | value = value }
 
 
 -- VIEW
 view : Model -> Html Msg
 view model =
-    renderDropdownHtml [1, 2, 3]
+    renderDropdownHtml model [1, 2, 3]
 
 
 -- OTHER
-renderDropdownHtml : List valuesList -> Html Msg
-renderDropdownHtml valuesList =
+renderDropdownHtml : Model -> List valuesList -> Html Msg
+renderDropdownHtml model valuesList =
     div
     [
         class "elm-dropdown"
     ]
     [
-        renderDropdownValueHtml,
+        renderDropdownValueHtml model,
         renderDropdownListHtml valuesList
     ]
 
-renderDropdownValueHtml : Html node
-renderDropdownValueHtml =
+renderDropdownValueHtml : Model -> Html node
+renderDropdownValueHtml model =
     div
     [
         class "elm-dropdown__value"
