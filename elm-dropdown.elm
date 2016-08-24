@@ -22,13 +22,16 @@ model =
 
 
 -- UPDATE
-type Msg = DropdownValue String
+type Msg = 
+    DropdownValue String | ToggleDropdown
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
         DropdownValue value ->
             { model | value = value }
+        ToggleDropdown  ->
+            { model | isOpen = not model.isOpen }        
 
 
 -- VIEW
@@ -49,11 +52,12 @@ renderDropdownHtml model valuesList =
         renderDropdownListHtml valuesList
     ]
 
-renderDropdownValueHtml : Model -> Html node
+renderDropdownValueHtml : Model -> Html Msg
 renderDropdownValueHtml model =
     div
     [
-        class "elm-dropdown__value"
+        class "elm-dropdown__value",
+        onClick ToggleDropdown
     ]
     [
         text ("Value: " ++ model.value)
