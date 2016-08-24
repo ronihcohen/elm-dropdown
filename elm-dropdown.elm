@@ -45,7 +45,8 @@ renderDropdownHtml : Model -> List valuesList -> Html Msg
 renderDropdownHtml model valuesList =
     div
     [
-        class "elm-dropdown"
+        class "elm-dropdown",
+        dropdownStyles
     ]
     [
         renderDropdownValueHtml model,
@@ -57,6 +58,7 @@ renderDropdownValueHtml model =
     div
     [
         class "elm-dropdown__value",
+        dropdownValueStyles,        
         onClick ToggleDropdown
     ]
     [
@@ -75,6 +77,7 @@ renderDropdownListHtml model valuesList =
             li
             [
                 class "elm-dropdown__list__item",
+                dropdownListItemStyles,
                 onClick (DropdownValue (toString val))
             ]
             [
@@ -85,11 +88,49 @@ renderDropdownListHtml model valuesList =
 
 
 -- STYLES
+dropdownStyles : Attribute msg
+dropdownStyles =
+    style
+    [
+        ("position", "relative"),        
+        ("width", "200px"),
+        ("height", "30px")
+    ]
+
+dropdownValueStyles : Attribute msg
+dropdownValueStyles =
+    style
+    [
+        ("box-sizing", "border-box"),
+        ("width", "100%"),
+        ("height", "100%"),
+        ("background", "#f7f7f7"),
+        ("padding", "0 10px"),
+        ("line-height", "30px"),
+        ("font-family", "sans-serif"),
+        ("font-size", "14px"),
+        ("border", "1px solid #ddd")
+    ]
+
 dropdownListStyles : Bool -> Attribute msg
 dropdownListStyles isOpen =
-  style
+    style
     [
-        (
-            "display", if isOpen then "block" else "none"
-        )
+        ("box-sizing", "border-box"),        
+        ("display", if isOpen then "block" else "none"),
+        ("position", "absolute"),
+        ("top", "calc(100% + 3px)"),
+        ("width", "100%"),
+        ("margin", "0"),
+        ("padding", "0"),
+        ("list-style-type", "none"),        
+        ("border", "1px solid #ddd")   
+    ]
+
+dropdownListItemStyles : Attribute msg
+dropdownListItemStyles =
+    style
+    [
+        ("box-sizing", "border-box"),
+        ("padding", "0 10px")                          
     ]
