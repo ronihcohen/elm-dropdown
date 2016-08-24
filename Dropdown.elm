@@ -50,9 +50,18 @@ renderDropdownHtml model valuesList =
         style DefaultStyles.dropdownStyles
     ]
     [
+        renderCaretValueHtml,
         renderDropdownValueHtml model,
         renderDropdownListHtml model valuesList
     ]
+
+renderCaretValueHtml : Html Msg
+renderCaretValueHtml =
+    span
+    [
+        style DefaultStyles.dropdownCaretStyles
+    ]
+    []
 
 renderDropdownValueHtml : Model -> Html Msg
 renderDropdownValueHtml model =

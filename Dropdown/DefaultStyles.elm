@@ -9,6 +9,19 @@ dropdownStyles =
         ("height", "30px")
     ]
 
+dropdownCaretStyles : List (String, String)
+dropdownCaretStyles =
+    [
+        ("position", "absolute"),        
+        ("width", "0"),
+        ("height", "0"),
+        ("top", "calc(50% - 2px)"),
+        ("right", "10px"),
+        ("border-left", "4px solid transparent"),
+        ("border-right", "4px solid transparent"),        
+        ("border-top", "4px solid #333")
+    ]
+
 dropdownValueStyles : List (String, String)
 dropdownValueStyles =
     [
@@ -45,5 +58,7 @@ dropdownListItemStyles =
         ("padding", "0 10px"),                        
         ("height", "30px"),                     
         ("line-height", "30px"),                    
-        ("border-bottom", "1px solid #ddd")                    
+        ("border-bottom", "1px solid #ddd"),
+        ("font-family", "sans-serif"),
+        ("font-size", "14px")               
     ]
