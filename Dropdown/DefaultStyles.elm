@@ -6,7 +6,8 @@ dropdownStyles =
     [
         ("position", "relative"),        
         ("width", "200px"),
-        ("height", "30px")
+        ("height", "30px"),
+        ("outline", "none")
     ]
 
 dropdownCaretStyles : List (String, String)
