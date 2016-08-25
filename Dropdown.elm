@@ -1,4 +1,4 @@
-module Dropdown exposing (init, view, update)
+module Dropdown exposing (init, view, update, getValue)
 
 
 import Html exposing (..)
@@ -114,3 +114,9 @@ renderDropdownListHtml model =
             ]
         ) model.valuesList
     )
+
+
+-- API
+getValue : Dropdown -> String
+getValue model =
+    model.value

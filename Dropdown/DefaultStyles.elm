@@ -30,7 +30,7 @@ dropdownValueStyles =
         ("width", "100%"),
         ("height", "100%"),
         ("background", "#f7f7f7"),
-        ("padding", "0 10px"),
+        ("padding", "0 28px 0 10px"),
         ("line-height", "30px"),
         ("font-family", "sans-serif"),
         ("font-size", "14px"),
