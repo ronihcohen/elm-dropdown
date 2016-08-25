@@ -7,7 +7,11 @@ import Dropdown.DefaultStyles as DefaultStyles
 
 main : Program Never
 main =
-    App.beginnerProgram { model = model, view = view, update = update }
+    App.beginnerProgram {
+        model = model,
+        view = view,
+        update = update
+    }
 
 
 -- MODEL
@@ -24,15 +28,17 @@ model =
 
 -- UPDATE
 type Msg = 
-    DropdownValue String | ToggleDropdown
+    DropdownValue String | ToggleDropdown | HideDropdown
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
         DropdownValue value ->
-            { model | value = value }
+            { model | value = value,  isOpen = False }
         ToggleDropdown  ->
-            { model | isOpen = not model.isOpen }        
+            { model | isOpen = not model.isOpen }  
+        HideDropdown  ->
+            { model | isOpen = False }        
 
 
 -- VIEW
@@ -46,9 +52,11 @@ renderDropdownHtml : Model -> List valuesList -> Html Msg
 renderDropdownHtml model valuesList =
     div
     [
+        tabindex -1,
         class "elm-dropdown",
-        style DefaultStyles.dropdownStyles
-    ]
+        style DefaultStyles.dropdownStyles,
+        onBlur HideDropdown
+    ]    
     [
         renderCaretValueHtml,
         renderDropdownValueHtml model,
