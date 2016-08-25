@@ -1,5 +1,6 @@
 module Dropdown exposing (init, view, update)
 
+
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.App as App
@@ -53,7 +54,6 @@ view model =
 
 
 -- OTHER
-
 renderDropdownHtml : Dropdown -> Html Msg
 renderDropdownHtml model =
     div
