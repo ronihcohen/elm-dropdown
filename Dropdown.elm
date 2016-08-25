@@ -1,5 +1,31 @@
-module Dropdown exposing (Dropdown, Msg, init, view, update, renderDropdownHtml, getValue)
+module Dropdown exposing (Dropdown, Msg, init, update, view, renderDropdownHtml, getValue)
 
+
+{-| A customizable Dropdown component.
+
+This Dropdown has a dynamic list of items.
+
+The Dropdown consists of a div containing a value, a caret and a list of
+possible values.
+
+See `Examples` folder for further details.
+
+# Definition
+@docs Dropdown, Msg
+
+# Init
+@docs init
+
+# Update
+@docs update
+
+# View
+@docs view, renderDropdownHtml
+
+# API
+@docs getValue
+
+-}
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -19,6 +45,7 @@ main =
 
 
 -- DROPDOWN MODEL
+{-| The Dropdown model. -}
 type alias Dropdown =
     {
         value : String,
@@ -27,15 +54,18 @@ type alias Dropdown =
         isOpen : Bool        
     }
 
+{-| Initializing the model. -}
 init : String -> List String -> String -> Dropdown
 init initialValue valuesList placeholderValue =
     Dropdown initialValue valuesList placeholderValue False
 
 
 -- UPDATE
+{-| Different message types the Dropdown can receive. -}
 type Msg = 
     DropdownValue String | ToggleDropdown | HideDropdown
 
+{-| Elm architecture reducer. -}
 update : Msg -> Dropdown -> Dropdown
 update msg model =
     case msg of
@@ -48,12 +78,14 @@ update msg model =
 
 
 -- VIEW
+{-| Dropdown view. -}
 view : Dropdown -> Html Msg
 view model =
     renderDropdownHtml model
 
 
 -- OTHER
+{-| Dropdown HTML creator method. -}
 renderDropdownHtml : Dropdown -> Html Msg
 renderDropdownHtml model =
     div
@@ -117,6 +149,7 @@ renderDropdownListHtml model =
 
 
 -- API
+{-| Get the model value. -}
 getValue : Dropdown -> String
 getValue model =
     model.value
