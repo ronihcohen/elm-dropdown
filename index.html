@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
+<html><head><meta charset="UTF-8"><title>Dropdown</title><style>html,head,body { padding:0; margin:0; }
 body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
@@ -7868,38 +7868,136 @@ var _elm_lang$html$Html_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
-var _r31gN$elm_dropdown$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		return _elm_lang$core$Native_Utils.update(
-			model,
-			{value: _p0._0});
-	});
-var _r31gN$elm_dropdown$Main$Model = F2(
-	function (a, b) {
-		return {value: a, isOpen: b};
-	});
-var _r31gN$elm_dropdown$Main$model = A2(_r31gN$elm_dropdown$Main$Model, '', false);
-var _r31gN$elm_dropdown$Main$renderDropdownValueHtml = A2(
-	_elm_lang$html$Html$div,
+var _r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownListItemStyles = _elm_lang$core$Native_List.fromArray(
+	[
+		{ctor: '_Tuple2', _0: 'box-sizing', _1: 'border-box'},
+		{ctor: '_Tuple2', _0: 'padding', _1: '0 10px'},
+		{ctor: '_Tuple2', _0: 'height', _1: '30px'},
+		{ctor: '_Tuple2', _0: 'line-height', _1: '30px'},
+		{ctor: '_Tuple2', _0: 'border-bottom', _1: '1px solid #ddd'},
+		{ctor: '_Tuple2', _0: 'font-family', _1: 'sans-serif'},
+		{ctor: '_Tuple2', _0: 'font-size', _1: '14px'}
+	]);
+var _r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownListStyles = function (isOpen) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			{ctor: '_Tuple2', _0: 'box-sizing', _1: 'border-box'},
+			{
+			ctor: '_Tuple2',
+			_0: 'display',
+			_1: isOpen ? 'block' : 'none'
+		},
+			{ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+			{ctor: '_Tuple2', _0: 'top', _1: 'calc(100% + 3px)'},
+			{ctor: '_Tuple2', _0: 'width', _1: '100%'},
+			{ctor: '_Tuple2', _0: 'margin', _1: '0'},
+			{ctor: '_Tuple2', _0: 'padding', _1: '0'},
+			{ctor: '_Tuple2', _0: 'list-style-type', _1: 'none'},
+			{ctor: '_Tuple2', _0: 'background', _1: '#fff'},
+			{ctor: '_Tuple2', _0: 'border', _1: '1px solid #ddd'},
+			{ctor: '_Tuple2', _0: 'border-width', _1: '1px 1px 0 1px'},
+			{ctor: '_Tuple2', _0: 'z-index', _1: '1'}
+		]);
+};
+var _r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownValueStyles = _elm_lang$core$Native_List.fromArray(
+	[
+		{ctor: '_Tuple2', _0: 'box-sizing', _1: 'border-box'},
+		{ctor: '_Tuple2', _0: 'width', _1: '100%'},
+		{ctor: '_Tuple2', _0: 'height', _1: '100%'},
+		{ctor: '_Tuple2', _0: 'background', _1: '#f7f7f7'},
+		{ctor: '_Tuple2', _0: 'padding', _1: '0 28px 0 10px'},
+		{ctor: '_Tuple2', _0: 'line-height', _1: '30px'},
+		{ctor: '_Tuple2', _0: 'font-family', _1: 'sans-serif'},
+		{ctor: '_Tuple2', _0: 'font-size', _1: '14px'},
+		{ctor: '_Tuple2', _0: 'border', _1: '1px solid #ddd'}
+	]);
+var _r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownCaretStyles = _elm_lang$core$Native_List.fromArray(
+	[
+		{ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+		{ctor: '_Tuple2', _0: 'width', _1: '0'},
+		{ctor: '_Tuple2', _0: 'height', _1: '0'},
+		{ctor: '_Tuple2', _0: 'top', _1: 'calc(50% - 2px)'},
+		{ctor: '_Tuple2', _0: 'right', _1: '10px'},
+		{ctor: '_Tuple2', _0: 'border-left', _1: '4px solid transparent'},
+		{ctor: '_Tuple2', _0: 'border-right', _1: '4px solid transparent'},
+		{ctor: '_Tuple2', _0: 'border-top', _1: '4px solid #333'}
+	]);
+var _r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownStyles = _elm_lang$core$Native_List.fromArray(
+	[
+		{ctor: '_Tuple2', _0: 'position', _1: 'relative'},
+		{ctor: '_Tuple2', _0: 'width', _1: '200px'},
+		{ctor: '_Tuple2', _0: 'height', _1: '30px'},
+		{ctor: '_Tuple2', _0: 'outline', _1: 'none'}
+	]);
+var _r31gN$elm_dropdown$Dropdown$getValue = function (model) {
+	return model.value;
+};
+var _r31gN$elm_dropdown$Dropdown$renderCaretHtml = A2(
+	_elm_lang$html$Html$span,
 	_elm_lang$core$Native_List.fromArray(
 		[
-			_elm_lang$html$Html_Attributes$class('elm-dropdown__value')
+			_elm_lang$html$Html_Attributes$style(_r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownCaretStyles)
 		]),
 	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text(
-			A2(_elm_lang$core$Basics_ops['++'], 'Value: ', _r31gN$elm_dropdown$Main$model.value))
-		]));
-var _r31gN$elm_dropdown$Main$DropdownValue = function (a) {
+		[]));
+var _r31gN$elm_dropdown$Dropdown$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'DropdownValue':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{value: _p0._0, isOpen: false});
+			case 'ToggleDropdown':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						isOpen: _elm_lang$core$Basics$not(model.isOpen)
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{isOpen: false});
+		}
+	});
+var _r31gN$elm_dropdown$Dropdown$Dropdown = F4(
+	function (a, b, c, d) {
+		return {value: a, valuesList: b, placeholder: c, isOpen: d};
+	});
+var _r31gN$elm_dropdown$Dropdown$init = F3(
+	function (initialValue, valuesList, placeholderValue) {
+		return A4(_r31gN$elm_dropdown$Dropdown$Dropdown, initialValue, valuesList, placeholderValue, false);
+	});
+var _r31gN$elm_dropdown$Dropdown$HideDropdown = {ctor: 'HideDropdown'};
+var _r31gN$elm_dropdown$Dropdown$ToggleDropdown = {ctor: 'ToggleDropdown'};
+var _r31gN$elm_dropdown$Dropdown$renderDropdownValueHtml = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('elm-dropdown__value'),
+				_elm_lang$html$Html_Attributes$style(_r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownValueStyles),
+				_elm_lang$html$Html_Events$onClick(_r31gN$elm_dropdown$Dropdown$ToggleDropdown)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(
+				_elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$String$length(model.value),
+					0) ? model.placeholder : model.value)
+			]));
+};
+var _r31gN$elm_dropdown$Dropdown$DropdownValue = function (a) {
 	return {ctor: 'DropdownValue', _0: a};
 };
-var _r31gN$elm_dropdown$Main$renderDropdownListHtml = function (valuesList) {
+var _r31gN$elm_dropdown$Dropdown$renderDropdownListHtml = function (model) {
 	return A2(
 		_elm_lang$html$Html$ul,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('elm-dropdown__list')
+				_elm_lang$html$Html_Attributes$class('elm-dropdown__list'),
+				_elm_lang$html$Html_Attributes$style(
+				_r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownListStyles(model.isOpen))
 			]),
 		A2(
 			_elm_lang$core$List$map,
@@ -7909,46 +8007,53 @@ var _r31gN$elm_dropdown$Main$renderDropdownListHtml = function (valuesList) {
 					_elm_lang$core$Native_List.fromArray(
 						[
 							_elm_lang$html$Html_Attributes$class('elm-dropdown__list__item'),
+							_elm_lang$html$Html_Attributes$style(_r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownListItemStyles),
 							_elm_lang$html$Html_Events$onClick(
-							_r31gN$elm_dropdown$Main$DropdownValue(
-								_elm_lang$core$Basics$toString(val)))
+							_r31gN$elm_dropdown$Dropdown$DropdownValue(val))
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(val))
+							_elm_lang$html$Html$text(val)
 						]));
 			},
-			valuesList));
+			model.valuesList));
 };
-var _r31gN$elm_dropdown$Main$renderDropdownHtml = F2(
-	function (model, valuesList) {
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('elm-dropdown')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_r31gN$elm_dropdown$Main$renderDropdownValueHtml,
-					_r31gN$elm_dropdown$Main$renderDropdownListHtml(valuesList)
-				]));
-	});
-var _r31gN$elm_dropdown$Main$view = function (model) {
+var _r31gN$elm_dropdown$Dropdown$renderDropdownHtml = function (model) {
 	return A2(
-		_r31gN$elm_dropdown$Main$renderDropdownHtml,
-		model,
+		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
-			[1, 2, 3]));
+			[
+				_elm_lang$html$Html_Attributes$tabindex(-1),
+				_elm_lang$html$Html_Attributes$class('elm-dropdown'),
+				_elm_lang$html$Html_Attributes$style(_r31gN$elm_dropdown$Dropdown_DefaultStyles$dropdownStyles),
+				_elm_lang$html$Html_Events$onBlur(_r31gN$elm_dropdown$Dropdown$HideDropdown)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_r31gN$elm_dropdown$Dropdown$renderCaretHtml,
+				_r31gN$elm_dropdown$Dropdown$renderDropdownValueHtml(model),
+				_r31gN$elm_dropdown$Dropdown$renderDropdownListHtml(model)
+			]));
 };
-var _r31gN$elm_dropdown$Main$main = {
+var _r31gN$elm_dropdown$Dropdown$view = function (model) {
+	return _r31gN$elm_dropdown$Dropdown$renderDropdownHtml(model);
+};
+var _r31gN$elm_dropdown$Dropdown$main = {
 	main: _elm_lang$html$Html_App$beginnerProgram(
-		{model: _r31gN$elm_dropdown$Main$model, view: _r31gN$elm_dropdown$Main$view, update: _r31gN$elm_dropdown$Main$update})
+		{
+			model: A3(
+				_r31gN$elm_dropdown$Dropdown$init,
+				'',
+				_elm_lang$core$Native_List.fromArray(
+					['2', '3', '4']),
+				'Your age'),
+			view: _r31gN$elm_dropdown$Dropdown$view,
+			update: _r31gN$elm_dropdown$Dropdown$update
+		})
 };
 var Elm = {};
-Elm['Main'] = Elm['Main'] || {};
-_elm_lang$core$Native_Platform.addPublicModule(Elm['Main'], 'Main', typeof _r31gN$elm_dropdown$Main$main === 'undefined' ? null : _r31gN$elm_dropdown$Main$main);
+Elm['Dropdown'] = Elm['Dropdown'] || {};
+_elm_lang$core$Native_Platform.addPublicModule(Elm['Dropdown'], 'Dropdown', typeof _r31gN$elm_dropdown$Dropdown$main === 'undefined' ? null : _r31gN$elm_dropdown$Dropdown$main);
 
 if (typeof define === "function" && define['amd'])
 {
@@ -7979,4 +8084,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-</script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script></body></html>
+</script></head><body><script type="text/javascript">Elm.Dropdown.fullscreen()</script></body></html>
