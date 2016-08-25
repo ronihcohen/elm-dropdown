@@ -1,4 +1,4 @@
-module Dropdown exposing (Dropdown, init, view, update, getValue)
+module Dropdown exposing (Dropdown, Msg, init, view, update, renderDropdownHtml, getValue)
 
 
 import Html exposing (..)

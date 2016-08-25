@@ -48,8 +48,10 @@ dropdownListStyles isOpen =
         ("margin", "0"),
         ("padding", "0"),
         ("list-style-type", "none"),        
+        ("background", "#fff"),
         ("border", "1px solid #ddd"),
-        ("border-width", "1px 1px 0 1px")         
+        ("border-width", "1px 1px 0 1px"),
+        ("z-index", "1")
     ]
 
 dropdownListItemStyles : List (String, String)
