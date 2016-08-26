@@ -29,19 +29,9 @@ See `Examples` folder for further details.
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.App as App
 import Html.Events exposing (..)
 import Dropdown.DefaultStyles as DefaultStyles
 import String
-
-
-main : Program Never
-main =
-    App.beginnerProgram {
-        model = init "" ["2", "3", "4"] "Your age",
-        view = view,
-        update = update
-    }
 
 
 -- DROPDOWN MODEL
