@@ -11,3 +11,6 @@ The component accepts the following params:
 1. `placeholder` (`String`) - Placeholder value for the DD
 1. `isOpen` (`Bool`) - If the DD is open or not
 
+### Usage
+
+For how to use, check the `/Example/Example.elm` file.
