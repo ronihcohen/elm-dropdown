@@ -23,6 +23,18 @@ dropdownCaretStyles =
         ("border-top", "4px solid #333")
     ]
 
+dropdownClearTextStyles : List (String, String)
+dropdownClearTextStyles =
+    [
+        ("display", "block"),        
+        ("position", "absolute"),        
+        ("height", "100%"),
+        ("right", "28px"),
+        ("color", "#333"),
+        ("line-height", "30px"),
+        ("font-size", "12px")
+    ]
+
 dropdownValueStyles : List (String, String)
 dropdownValueStyles =
     [
@@ -30,7 +42,7 @@ dropdownValueStyles =
         ("width", "100%"),
         ("height", "100%"),
         ("background", "#f7f7f7"),
-        ("padding", "0 28px 0 10px"),
+        ("padding", "0 48px 0 10px"),
         ("line-height", "30px"),
         ("font-family", "sans-serif"),
         ("font-size", "14px"),

@@ -53,7 +53,10 @@ init initialValue valuesList placeholderValue =
 -- UPDATE
 {-| Different message types the Dropdown can receive. -}
 type Msg = 
-    DropdownValue String | ToggleDropdown | HideDropdown
+    DropdownValue String |
+    ToggleDropdown |
+    HideDropdown |
+    ClearText
 
 {-| Elm architecture reducer. -}
 update : Msg -> Dropdown -> Dropdown
@@ -64,7 +67,9 @@ update msg model =
         ToggleDropdown  ->
             { model | isOpen = not model.isOpen }  
         HideDropdown  ->
-            { model | isOpen = False }        
+            { model | isOpen = False }  
+        ClearText  ->
+            { model | value = "" }       
 
 
 -- VIEW
@@ -87,6 +92,7 @@ renderDropdownHtml model =
     ]    
     [
         renderCaretHtml,
+        renderClearTextHtml,
         renderDropdownValueHtml model,
         renderDropdownListHtml model
     ]
@@ -95,9 +101,21 @@ renderCaretHtml : Html Msg
 renderCaretHtml =
     span
     [
-        style DefaultStyles.dropdownCaretStyles
+        style DefaultStyles.dropdownCaretStyles,
+        onClick ToggleDropdown        
     ]
     []
+
+renderClearTextHtml : Html Msg
+renderClearTextHtml =
+    span
+    [
+        style DefaultStyles.dropdownClearTextStyles,
+        onClick ClearText                
+    ]
+    [
+        text "✕"
+    ]
 
 renderDropdownValueHtml : Dropdown -> Html Msg
 renderDropdownValueHtml model =
