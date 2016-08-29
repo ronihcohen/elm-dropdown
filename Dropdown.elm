@@ -86,7 +86,7 @@ renderDropdownHtml model =
     div
     [
         tabindex -1,
-        class "elm-dropdown",
+        class "elm-dropdown wrapper",
         style DefaultStyles.dropdownStyles,
         onBlur HideDropdown
     ]    

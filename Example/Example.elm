@@ -21,6 +21,12 @@ view model =
         style divStyles
     ]
     [
+        node "link"
+        [
+            rel "stylesheet",
+            href "../test.css"
+        ] 
+        [],
         Dropdown.renderDropdownHtml model,
         p
         [
