@@ -24,7 +24,7 @@ view model =
         node "link"
         [
             rel "stylesheet",
-            href "../test.css"
+            href "../Dropdown.css"
         ] 
         [],
         Dropdown.renderDropdownHtml model,
