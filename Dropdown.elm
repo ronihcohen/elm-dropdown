@@ -85,7 +85,7 @@ renderDropdownHtml model =
     div
     [
         tabindex -1,
-        class "elm-dropdown",
+        class (if model.isOpen then "elm-dropdown is--opened" else "elm-dropdown"),
         onBlur HideDropdown
     ]    
     [
