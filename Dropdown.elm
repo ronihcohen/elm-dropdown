@@ -30,7 +30,6 @@ See `Examples` folder for further details.
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Dropdown.DefaultStyles as DefaultStyles
 import String
 
 
@@ -86,8 +85,7 @@ renderDropdownHtml model =
     div
     [
         tabindex -1,
-        class "elm-dropdown wrapper",
-        style DefaultStyles.dropdownStyles,
+        class "elm-dropdown",
         onBlur HideDropdown
     ]    
     [
@@ -101,7 +99,7 @@ renderCaretHtml : Html Msg
 renderCaretHtml =
     span
     [
-        style DefaultStyles.dropdownCaretStyles,
+        class "elm-dropdown__caret",
         onClick ToggleDropdown        
     ]
     []
@@ -110,7 +108,7 @@ renderClearTextHtml : Html Msg
 renderClearTextHtml =
     span
     [
-        style DefaultStyles.dropdownClearTextStyles,
+        class "elm-dropdown__clear",
         onClick ClearText                
     ]
     [
@@ -122,7 +120,6 @@ renderDropdownValueHtml model =
     div
     [
         class "elm-dropdown__value",
-        style DefaultStyles.dropdownValueStyles,        
         onClick ToggleDropdown
     ]
     [
@@ -138,15 +135,13 @@ renderDropdownListHtml : Dropdown -> Html Msg
 renderDropdownListHtml model =
     ul
     [
-        class "elm-dropdown__list",
-        style (DefaultStyles.dropdownListStyles model.isOpen)
+        class "elm-dropdown__list"
     ]
     (
         List.map (\val -> 
             li
             [
                 class "elm-dropdown__list__item",
-                style DefaultStyles.dropdownListItemStyles,
                 onClick (DropdownValue val)
             ]
             [
