@@ -119,7 +119,7 @@ renderDropdownValueHtml : Dropdown -> Html Msg
 renderDropdownValueHtml model =
     div
     [
-        class "elm-dropdown__value",
+        class (if model.value == "" then "elm-dropdown__value is--placeholder" else "elm-dropdown__value"),
         onClick ToggleDropdown
     ]
     [

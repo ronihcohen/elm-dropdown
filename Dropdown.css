@@ -58,6 +58,10 @@
     cursor: pointer;
   }
 
+  .elm-dropdown__value.is--placeholder {
+    color: #aaa;
+  }
+
   .elm-dropdown__list {
     box-sizing: border-box;        
     position: absolute;
