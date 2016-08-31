@@ -54,6 +54,10 @@
     border: 1px solid #ddd;
   }
 
+  .elm-dropdown__value:hover {
+    cursor: pointer;
+  }
+
   .elm-dropdown__list {
     box-sizing: border-box;        
     position: absolute;
