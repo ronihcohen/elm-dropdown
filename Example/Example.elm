@@ -1,54 +1,55 @@
+module Main exposing (..)
+
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.App as App
 import Dropdown as Dropdown
 
 
-main : Program Never
+main : Program Never Dropdown.Dropdown Dropdown.Msg
 main =
-    App.beginnerProgram {
-        model = Dropdown.init "" ["2", "3", "4"] "Your age",
-        view = view,
-        update = Dropdown.update
-    }
+    Html.beginnerProgram
+        { model = Dropdown.init "" [ "2", "3", "4" ] "Your age"
+        , view = view
+        , update = Dropdown.update
+        }
+
 
 
 -- VIEW
+
+
 view : Dropdown.Dropdown -> Html Dropdown.Msg
 view model =
     div
-    [
-        style divStyles
-    ]
-    [
-        node "link"
-        [
-            rel "stylesheet",
-            href "../Dropdown.css"
-        ] 
-        [],
-        Dropdown.renderDropdownHtml model,
-        p
-        [
-            style paragraphStyles
+        [ style divStyles
         ]
-        [
-            text ("Selected value: " ++ (Dropdown.getValue model))
+        [ node "link"
+            [ rel "stylesheet"
+            , href "../Dropdown.css"
+            ]
+            []
+        , Dropdown.renderDropdownHtml model
+        , p
+            [ style paragraphStyles
+            ]
+            [ text ("Selected value: " ++ (Dropdown.getValue model))
+            ]
         ]
-    ]
+
 
 
 -- OTHER
-divStyles : List (String, String)
+
+
+divStyles : List ( String, String )
 divStyles =
-    [
-        ("margin", "20px 0 0 20px")               
+    [ ( "margin", "20px 0 0 20px" )
     ]
 
-paragraphStyles : List (String, String)
+
+paragraphStyles : List ( String, String )
 paragraphStyles =
-    [
-        ("margin", "10px 0 0"),
-        ("font-family", "sans-serif"),
-        ("font-size", "14px")               
+    [ ( "margin", "10px 0 0" )
+    , ( "font-family", "sans-serif" )
+    , ( "font-size", "14px" )
     ]
