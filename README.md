@@ -18,4 +18,4 @@ For how to use, check the `/Example/Example.elm` file.
 ### Custom styles
 
 The component comes with a Dropdown.css file. Style changes should happen there. It's namespaced
-`elm-dorpdown`.
+`elm-dropdown`.
