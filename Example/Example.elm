@@ -8,7 +8,7 @@ import Dropdown as Dropdown
 main : Program Never Dropdown.Dropdown Dropdown.Msg
 main =
     Html.beginnerProgram
-        { model = Dropdown.init "" [ "2", "3", "4" ] "Your age"
+        { model = Dropdown.init "" [ "apple", "banana", "strawberry" ] "Your favorite fruit"
         , view = view
         , update = Dropdown.update
         }

@@ -42,6 +42,7 @@ type alias Dropdown =
     , valuesList : List String
     , placeholder : String
     , isOpen : Bool
+    , searchValue : String
     }
 
 
@@ -49,7 +50,7 @@ type alias Dropdown =
 -}
 init : String -> List String -> String -> Dropdown
 init initialValue valuesList placeholderValue =
-    Dropdown initialValue valuesList placeholderValue False
+    Dropdown initialValue valuesList placeholderValue False ""
 
 
 
@@ -63,6 +64,7 @@ type Msg
     | ToggleDropdown
     | HideDropdown
     | ClearText
+    | SearchValue String
 
 
 {-| Elm architecture reducer.
@@ -71,16 +73,19 @@ update : Msg -> Dropdown -> Dropdown
 update msg model =
     case msg of
         DropdownValue value ->
-            { model | value = value, isOpen = False }
+            { model | value = value, isOpen = False, searchValue = "" }
 
         ToggleDropdown ->
             { model | isOpen = not model.isOpen }
 
         HideDropdown ->
-            { model | isOpen = False }
+            { model | isOpen = False, searchValue = "" }
 
         ClearText ->
             { model | value = "" }
+
+        SearchValue value ->
+            { model | searchValue = value }
 
 
 
@@ -102,20 +107,26 @@ view model =
 -}
 renderDropdownHtml : Dropdown -> Html Msg
 renderDropdownHtml model =
-    div
-        [ tabindex -1
-        , class
-            (if model.isOpen then
-                "elm-dropdown is--opened"
-             else
-                "elm-dropdown"
-            )
-        , onBlur HideDropdown
-        ]
-        [ renderCaretHtml
-        , renderClearTextHtml
-        , renderDropdownValueHtml model
-        , renderDropdownListHtml model
+    div []
+        [ div
+            [ class "dropdown-overlay"
+            , onClick HideDropdown
+            ]
+            []
+        , div
+            [ tabindex -1
+            , class
+                (if model.isOpen then
+                    "elm-dropdown is--opened"
+                 else
+                    "elm-dropdown"
+                )
+            ]
+            [ renderCaretHtml
+            , renderClearTextHtml
+            , renderDropdownValueHtml model
+            , renderDropdownListHtml model
+            ]
         ]
 
 
@@ -163,16 +174,36 @@ renderDropdownListHtml model =
     ul
         [ class "elm-dropdown__list"
         ]
-        (List.map
-            (\val ->
-                li
-                    [ class "elm-dropdown__list__item"
-                    , onClick (DropdownValue val)
-                    ]
-                    [ text val
-                    ]
-            )
-            model.valuesList
+        ([ li
+            [ class "elm-dropdown__list__item"
+            ]
+            [ input
+                [ onInput SearchValue
+                , class "elm-dropdown__search"
+                , placeholder "Search"
+                , value model.searchValue
+                ]
+                []
+            ]
+         ]
+            ++ (List.filter
+                    (\val ->
+                        if model.searchValue == "" then
+                            True
+                        else
+                            String.contains model.searchValue val
+                    )
+                    model.valuesList
+                    |> List.map
+                        (\val ->
+                            li
+                                [ class "elm-dropdown__list__item"
+                                , onClick (DropdownValue val)
+                                ]
+                                [ text val
+                                ]
+                        )
+               )
         )
 
 
